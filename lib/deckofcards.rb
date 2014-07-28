@@ -1,1 +1,1 @@
-require 'deckofcards/deck'
+require_relative 'deckofcards/deck'

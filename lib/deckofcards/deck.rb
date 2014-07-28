@@ -40,9 +40,7 @@ module DeckOfCards
     def dealCard
       deck.pop
     end
+
   end
 
 end
-
-thedeck = DeckOfCards::Deck.new
-thedeck.printAllCards
