@@ -9,9 +9,11 @@ module DeckOfCards
 
   class Deck
 
+    SUITS = ["D","H","C","S"]
+
     def initialize
       @d = Array.new
-        suits.each do |suit|
+        SUITS.each do |suit|
           num = 2
           while num <= 14 do
             c_tmp = Card.new
@@ -25,10 +27,6 @@ module DeckOfCards
 
     def deck
       @d
-    end
-
-    def suits
-      @suits = ["D","H","C","S"]
     end
 
     def printAllCards
