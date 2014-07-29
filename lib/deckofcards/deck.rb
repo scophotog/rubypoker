@@ -30,11 +30,6 @@ module DeckOfCards
 
     def dealCard
       deck.delete_at Random.new.rand deck.length
-      #r = Random.new
-      #cardIndex = r.rand(deck.length)
-      #tmpCard = deck.at(cardIndex)
-      #deck.delete_at(cardIndex)
-      #tmpCard
     end
 
     def makeDeck
