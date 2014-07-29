@@ -2,8 +2,13 @@ module DeckOfCards
 
   class Card
 
-    attr :c_num, true
-    attr :c_suit, true
+    attr :num, true
+    attr :suit, true
+
+    def initialize(suit,num)
+      @num = num
+      @suit = suit
+    end
 
   end
 
@@ -11,32 +16,36 @@ module DeckOfCards
 
     SUITS = ["D","H","C","S"]
 
-    def initialize
-      @d = Array.new
-        SUITS.each do |suit|
-          num = 2
-          while num <= 14 do
-            c_tmp = Card.new
-            c_tmp.c_num=(num)
-            c_tmp.c_suit=(suit)
-            @d.push(c_tmp)
-            num += 1
-          end
-        end
-    end
-
-    def deck
-      @d
-    end
+    attr :deck
 
     def printAllCards
       deck.each do |card|
-        puts "Card #{card.c_suit} - #{card.c_num}"
+        printCard(card)
       end
     end
 
+    def printCard(card)
+      puts "Card #{card.suit} - #{card.num}"
+    end
+
     def dealCard
-      deck.pop
+      deck.delete_at Random.new.rand deck.length
+      #r = Random.new
+      #cardIndex = r.rand(deck.length)
+      #tmpCard = deck.at(cardIndex)
+      #deck.delete_at(cardIndex)
+      #tmpCard
+    end
+
+    def makeDeck
+      @deck = Array.new
+      SUITS.each do |suit|
+        num = 2
+        while num <= 14 do
+          @deck.push(Card.new(suit,num))
+          num += 1
+        end
+      end
     end
 
   end
