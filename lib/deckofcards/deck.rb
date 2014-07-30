@@ -2,8 +2,8 @@ module DeckOfCards
 
   class Card
 
-    attr :num, true
-    attr :suit, true
+    attr_accessor :num
+    attr_accessor :suit
 
     def initialize(suit,num)
       @num = num
