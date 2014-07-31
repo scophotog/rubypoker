@@ -1,10 +1,14 @@
 class HandEvaluator
 
-  def flush?(cards)
-    cards.each do |card|
+  def initialize(hand)
+    @hand = hand
+  end
+
+  def flush?
+    @hand.each do |card|
       i = 0
-      while i < cards.length do
-        if card.suit != cards[0].suit
+      while i < @hand.length do
+        if card.suit != @hand[i].suit
           return false
         end
         i+=1
@@ -13,17 +17,8 @@ class HandEvaluator
     return true
   end
 
-  def ranking(cards)
-
-    ranking = Array.new
-    cards.each do |card|
-      ranking.push(card.num)
-    end
-    ranking.sort
-  end
-
-  def straight?(cards)
-    sorted = ranking(cards)
+  def straight?()
+    sorted = rankCards
     j = 0
     while j < sorted.length-1 do
       x = sorted[j+1] - sorted[j]
@@ -33,6 +28,30 @@ class HandEvaluator
       j+=1
     end
     return true
+  end
+
+  def rankCards
+    ranking = []
+    @hand.each do |card|
+      ranking.push(card.num)
+    end
+    ranking.sort
+  end
+
+  def fourOfAKind?
+    sorted = rankCards
+    count = 0
+    i = 0
+    sorted.each do |card|
+      while i < @hand.length && count < 4 do
+        if card == @hand[i].num
+          count+=1
+        end
+        i+=1
+      end
+    end
+    puts "Count #{count}"
+    count == 4 ? true : false
   end
 
 end

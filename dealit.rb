@@ -13,22 +13,28 @@ thedeck.makeDeck
 
 cards = Array.new
 
-for i in 2..5
-  cards.push(DeckOfCards::Card.new("D",i))
+for i in 2..4
+  cards.push(DeckOfCards::Card.new("D",4))
 end
-#cards.push(DeckOfCards::Card.new("H",8))
+cards.push(DeckOfCards::Card.new("H",8))
 
-evaluate = HandEvaluator.new
-if evaluate.flush?(cards)
+evaluate = HandEvaluator.new(cards)
+if evaluate.flush?
   puts "FLUSH"
 else
   puts "NOT FLUSH"
 end
 
-if evaluate.straight?(cards)
+if evaluate.straight?
   puts "STRAIGHT"
 else
   puts "NOT STRAIGHT"
+end
+
+if evaluate.fourOfAKind?
+  puts "FOUR"
+else
+  puts "NOT"
 end
 
 
