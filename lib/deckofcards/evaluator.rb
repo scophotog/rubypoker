@@ -10,7 +10,10 @@ class HandEvaluator
     end
   end
 
-  def straight?()
+  def straight?
+    card = rank_cards_hilow.first
+    (rankCards.length - 1).downto(0) do |i|
+      card - rankCards[i]
     sorted = rankCards
     j = 0
     while j < sorted.length-1 do
@@ -23,12 +26,12 @@ class HandEvaluator
     return true
   end
 
-  def rankCards
+  def rank_cards_hilow
     ranking = []
     @hand.each do |card|
       ranking.push(card.num)
     end
-    ranking.sort
+    ranking.sort.reverse!
   end
 
   def fourOfAKind?
@@ -47,4 +50,4 @@ class HandEvaluator
     count == 4 ? true : false
   end
 
-end
+  end
