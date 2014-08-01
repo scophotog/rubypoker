@@ -5,16 +5,9 @@ class HandEvaluator
   end
 
   def flush?
-    @hand.each do |card|
-      i = 0
-      while i < @hand.length do
-        if card.suit != @hand[i].suit
-          return false
-        end
-        i+=1
-      end
+    @hand.all? do |card|
+      card.suit == @hand.first.suit
     end
-    return true
   end
 
   def straight?()
